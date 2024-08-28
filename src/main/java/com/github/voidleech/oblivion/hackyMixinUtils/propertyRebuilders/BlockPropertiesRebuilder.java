@@ -50,6 +50,12 @@ public class BlockPropertiesRebuilder {
         return this;
     }
 
+    @CheckReturnValue
+    public BlockPropertiesRebuilder strength(float strength){
+        properties.strength(strength);
+        return this;
+    }
+
     public void finalizeRebuild(){
         block.properties = properties;
         StateDefinition.Builder<Block, BlockState> builder = new StateDefinition.Builder<>(block);
