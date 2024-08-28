@@ -1,25 +1,19 @@
 package com.github.voidleech.oblivion;
 
-import com.github.voidleech.oblivion.event.AbstractObsidianPackEvents;
 import com.github.voidleech.oblivion.registry.OblivionComposting;
 import com.github.voidleech.oblivion.registry.OblivionFurnaceFuel;
 import com.github.voidleech.oblivion.registry.OblivionPotionRecipes;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-
-import java.util.Map;
 
 @Mod(Oblivion.MOD_ID)
 public class Oblivion
@@ -36,7 +30,17 @@ public class Oblivion
         OblivionPotionRecipes.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
-        OblivionFurnaceFuel.register(MinecraftForge.EVENT_BUS, modEventBus);
+        OblivionFurnaceFuel.register(MinecraftForge.EVENT_BUS, modEventBus
+
+
+
+
+
+
+
+
+
+        );
 
         //ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, OblivionConfig.SPEC);
     }

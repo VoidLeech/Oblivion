@@ -16,12 +16,12 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.nio.file.Path;
 import java.util.Map;
 
-public abstract class AbstractObsidianPackEvents {
+public abstract class AbstractObsidianPacks {
     private final Map<String, Tuple<Component, Boolean>> RESOURCE_PACKS;
     private final String MOD_ID;
     private final String ABBREVIATION;
 
-    protected AbstractObsidianPackEvents(Map<String, Tuple<Component, Boolean>> resourcePacks, String modId, String abrv) {
+    protected AbstractObsidianPacks(Map<String, Tuple<Component, Boolean>> resourcePacks, String modId, String abrv) {
         RESOURCE_PACKS = resourcePacks;
         MOD_ID = modId;
         ABBREVIATION = abrv;
