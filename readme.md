@@ -3,8 +3,10 @@
 [![CurseForge Downloads](https://img.shields.io/curseforge/dt/{project-id}?style=flat&logo=curseforge&label=Curseforge)](https://www.curseforge.com/minecraft/mc-mods/{template-mod-slug})
 ![Modrinth Game Versions](https://cf.way2muchnoise.eu/versions/{project-id}.svg)
 
+A Minecraft modding library. 
+
 ### F.A.Q.
-**Q: Can this be used in my modpack?**  
+**Q: Can this be used in my CurseForge/Modrinth modpack?**  
 A: Yes.
 
 ### Licensing
