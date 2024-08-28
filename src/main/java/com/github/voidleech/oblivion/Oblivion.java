@@ -36,7 +36,7 @@ public class Oblivion
         OblivionPotionRecipes.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
-        OblivionFurnaceFuel.register(MinecraftForge.EVENT_BUS);
+        OblivionFurnaceFuel.register(MinecraftForge.EVENT_BUS, modEventBus);
 
         //ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, OblivionConfig.SPEC);
     }

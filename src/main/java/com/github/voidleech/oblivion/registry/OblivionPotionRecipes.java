@@ -13,21 +13,22 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Supplier;
 
 public class OblivionPotionRecipes {
     private static Set<Mix> MIXES = Collections.synchronizedSet(new HashSet<>());
-    private static Set<BrewingRecipe> RECIPES = Collections.synchronizedSet(new HashSet<>());
+    private static Set<Supplier<BrewingRecipe>> RECIPES = Collections.synchronizedSet(new HashSet<>());
 
     private static void addRecipes(FMLCommonSetupEvent event){
         event.enqueueWork(() -> {
             for (Mix mix : MIXES){
-                PotionBrewing.addMix(mix.input, mix.ingredient, mix.output);
+                PotionBrewing.addMix(mix.input.get(), mix.ingredient.get(), mix.output.get());
             }
-            for (BrewingRecipe recipe : RECIPES){
-                BrewingRecipeRegistry.addRecipe(recipe);
+            for (Supplier<BrewingRecipe> recipe : RECIPES){
+                BrewingRecipeRegistry.addRecipe(recipe.get());
             }
             // Now that the values are in the brewing recipe registry or potion brewing mixes,
-            // make sure we don't point at it anymore, so that the memory can get freed.
+            // make sure we don't point at the registry sets anymore, so that the memory can get freed.
             MIXES = null;
             RECIPES = null;
         });
@@ -45,6 +46,17 @@ public class OblivionPotionRecipes {
      * @param output
      */
     public static void addMix(Potion input, Item ingredient, Potion output){
+        MIXES.add(new Mix(() -> input, () -> ingredient, () -> output));
+    }
+
+    /**
+     * Adds a brewing mix.
+     * For calling with other mod's potions and/or items
+     * @param input
+     * @param ingredient
+     * @param output
+     */
+    public static void addMix(Supplier<Potion> input, Supplier<Item> ingredient, Supplier<Potion> output){
         MIXES.add(new Mix(input, ingredient, output));
     }
 
@@ -57,9 +69,13 @@ public class OblivionPotionRecipes {
      * @param output
      */
     public static void addRecipe(Ingredient input, Ingredient ingredient, ItemStack output){
-        RECIPES.add(new BrewingRecipe(input, ingredient, output));
+        RECIPES.add(() -> new BrewingRecipe(input, ingredient, output));
     }
 
-    private record Mix(Potion input, Item ingredient, Potion output) {
+    public static void addRecipe(Supplier<Ingredient> input, Supplier<Ingredient> ingredient, Supplier<ItemStack> output){
+        RECIPES.add(() -> new BrewingRecipe(input.get(), ingredient.get(), output.get()));
+    }
+
+    private record Mix(Supplier<Potion> input, Supplier<Item> ingredient, Supplier<Potion> output) {
     }
 }
