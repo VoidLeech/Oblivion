@@ -43,16 +43,11 @@ public class OblivionFurnaceFuel {
 
     /**
      * Adds an item as furnace fuel. Use only when getBurnTime somehow isn't available to override.
-     * Call in Mod Constructor, after Item Registration.
      * @param item to be used as fuel
      * @param burnTime ticks to burn. A standard furnace recipe takes 200 ticks.
      */
-    public static void addFurnaceFuel(Item item, int burnTime){
-        FUEL_TIMES_TO_REGISTER.add(new FuelTime(() -> item, burnTime));
-    }
-
-    public static void addFurnaceFuel(Supplier<Item> item, int burntime){
-        FUEL_TIMES_TO_REGISTER.add(new FuelTime(item, burntime));
+    public static void addFurnaceFuel(Supplier<Item> item, int burnTime){
+        FUEL_TIMES_TO_REGISTER.add(new FuelTime(item, burnTime));
     }
 
     private record FuelTime(Supplier<Item> item, int burnTime){

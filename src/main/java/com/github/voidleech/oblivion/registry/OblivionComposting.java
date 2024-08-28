@@ -31,17 +31,6 @@ public class OblivionComposting {
 
     /**
      * Adds an item to the composter.
-     * Call in Mod Constructor, after Item Registration.
-     * @param item to be composted.
-     * @param chance to produce a layer in the composter.
-     */
-    public static void addCompostable(ItemLike item, float chance){
-        COMPOSTING_CHANCES.add(new Tuple<>(() -> item, chance));
-    }
-
-    /**
-     * Adds an item to the composter.
-     * For adding another mod's item
      * @param item to be composted.
      * @param chance to produce a layer in the composter.
      */

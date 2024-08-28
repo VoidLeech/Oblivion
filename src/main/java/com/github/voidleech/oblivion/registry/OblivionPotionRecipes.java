@@ -40,18 +40,6 @@ public class OblivionPotionRecipes {
 
     /**
      * Adds a brewing mix.
-     * Call in Mod Constructor, after Item Registration.
-     * @param input
-     * @param ingredient
-     * @param output
-     */
-    public static void addMix(Potion input, Item ingredient, Potion output){
-        MIXES.add(new Mix(() -> input, () -> ingredient, () -> output));
-    }
-
-    /**
-     * Adds a brewing mix.
-     * For calling with other mod's potions and/or items
      * @param input
      * @param ingredient
      * @param output
@@ -62,16 +50,11 @@ public class OblivionPotionRecipes {
 
     /**
      * Adds a brewing recipe. For brewing that has a non-potion as input or output.
-     * Use {@link #addMix(Potion input, Item ingredient, Potion output) addMix} otherwise.
-     * Call in Mod Constructor, after Item Registration.
+     * Use {@link #addMix(Supplier input, Supplier ingredient, Supplier output) addMix} otherwise.
      * @param input
      * @param ingredient
      * @param output
      */
-    public static void addRecipe(Ingredient input, Ingredient ingredient, ItemStack output){
-        RECIPES.add(() -> new BrewingRecipe(input, ingredient, output));
-    }
-
     public static void addRecipe(Supplier<Ingredient> input, Supplier<Ingredient> ingredient, Supplier<ItemStack> output){
         RECIPES.add(() -> new BrewingRecipe(input.get(), ingredient.get(), output.get()));
     }
