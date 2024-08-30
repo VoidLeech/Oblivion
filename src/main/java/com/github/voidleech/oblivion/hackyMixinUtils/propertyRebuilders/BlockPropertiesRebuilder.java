@@ -11,6 +11,8 @@ import javax.annotation.CheckReturnValue;
 
 public class BlockPropertiesRebuilder {
     private final Block block;
+    // These have to be updated as well, in contrast to Item and Fluid, as the properties are never saved in those.
+    // None of the rebuilders (unfortunately) are able to pass changed properties on to any mods that mixin into the base Block, Item or Fluid constructors.
     private final BlockBehaviour.Properties properties;
 
     private BlockPropertiesRebuilder(Block block, BlockBehaviour.Properties properties){
