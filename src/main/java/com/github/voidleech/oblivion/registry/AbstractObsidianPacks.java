@@ -1,4 +1,4 @@
-package com.github.voidleech.oblivion.event;
+package com.github.voidleech.oblivion.registry;
 
 import net.minecraft.SharedConstants;
 import net.minecraft.network.chat.Component;
