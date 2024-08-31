@@ -3,7 +3,6 @@ package com.github.voidleech.oblivion.registry;
 import com.github.voidleech.oblivion.Oblivion;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
