@@ -1,7 +1,7 @@
 # Oblivion
-[![Modrinth Downloads](https://img.shields.io/modrinth/dt/{template-mod-slug}?style=flat&logo=modrinth&label=Modrinth)](https://modrinth.com/mod/{template-mod-slug})
-[![CurseForge Downloads](https://img.shields.io/curseforge/dt/{project-id}?style=flat&logo=curseforge&label=Curseforge)](https://www.curseforge.com/minecraft/mc-mods/{template-mod-slug})
-![Modrinth Game Versions](https://cf.way2muchnoise.eu/versions/{project-id}.svg)
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/oblivion-api?style=flat&logo=modrinth&label=Modrinth)](https://modrinth.com/mod/oblivion-api)
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1096331?style=flat&logo=curseforge&label=Curseforge)](https://www.curseforge.com/minecraft/mc-mods/oblivion-api)
+![Modrinth Game Versions](https://cf.way2muchnoise.eu/versions/oblivion-api.svg)
 
 A Minecraft modding library. After implementation (here, once), cast the details into *Oblivion*, and call simple, intuitive methods.
 
