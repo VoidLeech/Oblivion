@@ -28,10 +28,10 @@ public abstract class AbstractOblivionPacks {
     }
 
     /**
-     * @param eventBus mod event bus
+     * @param modEventBus mod event bus
      */
-    public void register(IEventBus eventBus){
-        eventBus.addListener(this::addResourcePacks);
+    public void register(IEventBus modEventBus){
+        modEventBus.addListener(this::addResourcePacks);
     }
 
     private void addResourcePacks(AddPackFindersEvent event){
