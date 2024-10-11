@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-abstract class AbstractOblivionMixinPlugin implements IMixinConfigPlugin {
+public abstract class AbstractOblivionMixinPlugin implements IMixinConfigPlugin {
     private static final Map<String, String> REQUIRED_MODS_FOR_MIXINS = new HashMap<>();
 
     public AbstractOblivionMixinPlugin(Map<String, String> kvps){
