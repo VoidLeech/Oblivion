@@ -1,5 +1,7 @@
 package com.github.voidleech.oblivion.mixin.plugin;
 
+import com.github.voidleech.oblivion.Oblivion;
+import com.google.gson.annotations.Since;
 import net.minecraftforge.fml.loading.LoadingModList;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -17,6 +19,12 @@ public abstract class AbstractOblivionMixinPlugin implements IMixinConfigPlugin 
         REQUIRED_MODS_FOR_MIXINS.putAll(kvps);
     }
 
+    public AbstractOblivionMixinPlugin(String prefix, Map<String, String> kvps){
+        for (Map.Entry<String, String> entry : kvps.entrySet()) {
+            REQUIRED_MODS_FOR_MIXINS.put(prefix + entry.getKey(), entry.getValue());
+        }
+    }
+
     @Override
     public void onLoad(String s) {
 
@@ -30,6 +38,7 @@ public abstract class AbstractOblivionMixinPlugin implements IMixinConfigPlugin 
     @Override
     public boolean shouldApplyMixin(String target, String mixinToApply) {
         String targetMod = REQUIRED_MODS_FOR_MIXINS.get(mixinToApply);
+        Oblivion.LOGGER.debug("{}, {}, {}", mixinToApply, targetMod, LoadingModList.get().getModFileById(targetMod) != null);
         return targetMod == null || LoadingModList.get().getModFileById(targetMod) != null;
     }
 
