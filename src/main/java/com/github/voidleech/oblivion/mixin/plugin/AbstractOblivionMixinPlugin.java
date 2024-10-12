@@ -38,7 +38,6 @@ public abstract class AbstractOblivionMixinPlugin implements IMixinConfigPlugin 
     @Override
     public boolean shouldApplyMixin(String target, String mixinToApply) {
         String targetMod = REQUIRED_MODS_FOR_MIXINS.get(mixinToApply);
-        Oblivion.LOGGER.debug("{}, {}, {}", mixinToApply, targetMod, LoadingModList.get().getModFileById(targetMod) != null);
         return targetMod == null || LoadingModList.get().getModFileById(targetMod) != null;
     }
 
