@@ -7,7 +7,7 @@ A Minecraft modding library. After implementation (here, once), cast the details
 
 ### Features
 - Abstract Mixin Plugin for easy mod-dependent mixins.
-- A mixin utility to give Blocks, Items, or FluidTypes new properties (atm only a subset of properties is available).
+- Some extension methods for Block-, Item-, or FluidTypeProperties to undo calls like `noCollission()` \[sic\] (atm only a subset of properties is available).
 - Advancement Brute Forcer to grant advancements by name, regardless of the actual criteria defined.
 - Abstract System to provide additional resource packs.
 - Simple Registration of Potion Recipes, Compostability, and Furnace Fuel Time.

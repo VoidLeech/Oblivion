@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "mixins.oblivion_api.refmap.json",
   "mixins": [
+    "BlockPropertiesMixin"
   ],
   "client": [
   ],
