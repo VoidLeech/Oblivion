@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(BlockBehaviour.Properties.class)
-public class BlockPropertiesMixin implements IBlockPropertyUndoerExtensions {
+public abstract class BlockPropertiesMixin implements IBlockPropertyUndoerExtensions {
 
     @Shadow
     boolean hasCollision;
