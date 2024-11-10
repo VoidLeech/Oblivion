@@ -1,7 +1,5 @@
 package com.github.voidleech.oblivion.mixin.plugin;
 
-import com.github.voidleech.oblivion.Oblivion;
-import com.google.gson.annotations.Since;
 import net.minecraftforge.fml.loading.LoadingModList;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;

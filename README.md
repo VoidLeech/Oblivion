@@ -11,6 +11,7 @@ A Minecraft modding library. After implementation (here, once), cast the details
 - Advancement Brute Forcer to grant advancements by name, regardless of the actual criteria defined.
 - Abstract System to provide additional resource packs.
 - Simple Registration of Potion Recipes, Compostability, and Furnace Fuel Time.
+- Simple sign registration
 - IShownInCreativeTab interface.
 
 ### F.A.Q.

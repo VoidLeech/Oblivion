@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(targets = "net.minecraft.world.level.block.state.BlockBehaviour$Properties")
+@Mixin(BlockBehaviour.Properties.class)
 public class BlockPropertiesMixin implements IBlockPropertyUndoerExtensions {
 
     @Shadow
