@@ -12,6 +12,10 @@ import java.util.Map;
 
 public interface OblivionBoatType extends StringRepresentable{
     Map<String, OblivionBoatType> TYPES = Collections.synchronizedMap(new HashMap<>());
+    default void initOBT(){
+        TYPES.put(getSerializedName(), this);
+    }
+
     @Override
     default String getSerializedName() {
         return getName() + ':' + getNamespace();
