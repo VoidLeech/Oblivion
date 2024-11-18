@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
-public class OblivionHangingSignBlock extends CeilingHangingSignBlock {
+public class OblivionHangingSignBlock extends CeilingHangingSignBlock implements IHangingSign {
     public OblivionHangingSignBlock(Properties pProperties, WoodType pType) {
         super(pProperties, pType);
     }

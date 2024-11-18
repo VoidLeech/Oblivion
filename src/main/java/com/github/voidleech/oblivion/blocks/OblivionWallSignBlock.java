@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
-public class OblivionWallSignBlock extends WallSignBlock {
+public class OblivionWallSignBlock extends WallSignBlock implements INormalSign {
     public OblivionWallSignBlock(Properties pProperties, WoodType pType) {
         super(pProperties, pType);
     }
