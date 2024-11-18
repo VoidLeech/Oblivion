@@ -1,12 +1,18 @@
 package com.github.voidleech.oblivion;
 
+import com.github.voidleech.oblivion.entities.client.OblivionBoatRenderer;
+import com.github.voidleech.oblivion.entities.client.OblivionModelLayers;
 import com.github.voidleech.oblivion.registry.OblivionBlockEntities;
 import com.github.voidleech.oblivion.registry.OblivionComposting;
+import com.github.voidleech.oblivion.registry.OblivionEntities;
 import com.github.voidleech.oblivion.registry.OblivionFurnaceFuel;
 import com.github.voidleech.oblivion.registry.OblivionPotionRecipes;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,6 +37,7 @@ public class Oblivion
         modEventBus.addListener(this::commonSetup);
 
         OblivionBlockEntities.register(modEventBus);
+        OblivionEntities.register(modEventBus);
 
         OblivionComposting.register(modEventBus);
         OblivionPotionRecipes.register(modEventBus);
@@ -58,13 +65,22 @@ public class Oblivion
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            event.enqueueWork(() -> {
+                EntityRenderers.register(OblivionEntities.BOAT.get(), context -> new OblivionBoatRenderer(context, false));
+                EntityRenderers.register(OblivionEntities.CHEST_BOAT.get(), context -> new OblivionBoatRenderer(context, true));
+            });
         }
 
         @SubscribeEvent
         public static void registerBER(EntityRenderersEvent.RegisterRenderers event){
             event.registerBlockEntityRenderer(OblivionBlockEntities.SIGN.get(), SignRenderer::new);
             event.registerBlockEntityRenderer(OblivionBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
+            event.registerLayerDefinition(OblivionModelLayers.FALLBACK_BOAT_LAYER, BoatModel::createBodyModel);
+            event.registerLayerDefinition(OblivionModelLayers.FALLBACK_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
         }
     }
 }

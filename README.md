@@ -11,8 +11,9 @@ A Minecraft modding library. After implementation (here, once), cast the details
 - Advancement Brute Forcer to grant advancements by name, regardless of the actual criteria defined.
 - Abstract System to provide additional resource packs.
 - Simple Registration of Potion Recipes, Compostability, and Furnace Fuel Time.
-- Simple sign registration
-- IShownInCreativeTab interface.
+- Mod-agnostic Sign Registration.
+- Mod-agnostic Boat Registration.
+- IShownInCreativeTab interface definition.
 
 ### F.A.Q.
 **Q: Can this be used in my modpack?**  
@@ -20,3 +21,6 @@ A: Yes, but do note our license does not allow directly including the mod files 
 
 ### Licensing
 This project is released under the [Avoiding Leeching License, version 1.0](LICENSE).
+
+#### Third-Party Content
+The boat code in this project is based on and contains code from Kaupenjoe's 1.20.X Forge Tutorial, which is licensed under the [MIT license](other-licenses/mit-kaupenjoe).
