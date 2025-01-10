@@ -134,6 +134,8 @@ dependencies {
         jarJar.ranged(it, "[0.4.1,)")
     }
 
+    implementation fg.deobf("curse.maven:jade-324717:5876199")
+
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
