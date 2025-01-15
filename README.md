@@ -20,7 +20,7 @@ A Minecraft modding library. After implementation (here, once), cast the details
 A: Yes, but do note our license does not allow directly including the mod files in your pack.
 
 ### Licensing
-This project is released under the [Avoiding Leeching License, version 1.0](LICENSE).
+This project is released under the [Avoiding Leeching License, version 1.1](LICENSE).
 
 #### Third-Party Content
 The boat code in this project is based on and contains code from Kaupenjoe's 1.20.X Forge Tutorial, which is licensed under the [MIT license](other-licenses/mit-kaupenjoe).
