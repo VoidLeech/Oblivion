@@ -11,9 +11,4 @@ public class OblivionSignBlockEntity extends SignBlockEntity {
     public OblivionSignBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(OblivionBlockEntities.SIGN.get(), pPos, pBlockState);
     }
-
-    @Override
-    public BlockEntityType<?> getType() {
-        return OblivionBlockEntities.SIGN.get();
-    }
 }

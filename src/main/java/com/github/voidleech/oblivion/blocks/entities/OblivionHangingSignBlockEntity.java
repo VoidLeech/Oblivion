@@ -11,9 +11,4 @@ public class OblivionHangingSignBlockEntity extends HangingSignBlockEntity {
     public OblivionHangingSignBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(pPos, pBlockState);
     }
-
-    @Override
-    public BlockEntityType<?> getType() {
-        return OblivionBlockEntities.HANGING_SIGN.get();
-    }
 }

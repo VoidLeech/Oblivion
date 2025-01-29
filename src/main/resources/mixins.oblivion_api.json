@@ -3,9 +3,7 @@
   "package": "com.github.voidleech.oblivion.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "mixins.oblivion_api.refmap.json",
-  "mixins": [
-    "BlockPropertiesMixin"
-  ],
+  "mixins": ["BlockPropertiesMixin", "HangingSignBlockEntityMixin"],
   "client": [
   ],
   "minVersion": "0.8"
