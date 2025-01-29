@@ -6,6 +6,7 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Mixin(HangingSignBlockEntity.class)
 public class HangingSignBlockEntityMixin {
 
+    @Unique
     private static final StackWalker oblivion$stackWalker = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE);
 
     @ModifyExpressionValue(method = "<init>", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/block/entity/BlockEntityType;HANGING_SIGN:Lnet/minecraft/world/level/block/entity/BlockEntityType;"))
