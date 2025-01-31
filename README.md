@@ -25,7 +25,7 @@ A: Both planned, in that order, but multiloader is proving problematic with how 
 ### Licensing
 This project is released under the [Avoiding Leeching License, version 1.1](LICENSE).  
 
-[HangingSignBlockEntityMixin.java](src/main/java/com/github/voidleech/oblivion/mixin/HangingSignBlockEntityMixin.java) is released under the [MIT License](other-licenses/mit-self): it ensures that the `type` parameter in the HangingSignBlockEntity superclasses is set to the correct type (ugh vanilla why hardcode it), which is relevant if someone mixes into the constructor of a superclass and uses the parameter, and is compatible with other mixins like it.
+[HangingSignBlockEntityMixin.java](common/src/main/java/com/github/voidleech/oblivion/mixin/HangingSignBlockEntityMixin.java) is released under the [MIT License](other-licenses/mit-self): it ensures that the `type` parameter in the HangingSignBlockEntity superclasses is set to the correct type (ugh vanilla why hardcode it), which is relevant if someone mixes into the constructor of a superclass and uses the parameter, and is compatible with other mixins like it.
 
 #### Third-Party Content
 The boat code in this project is based on and contains code from Kaupenjoe's 1.20.X Forge Tutorial, which is licensed under the [MIT license](other-licenses/mit-kaupenjoe).
