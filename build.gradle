@@ -72,6 +72,10 @@ subprojects {
             name = 'BlameJared Maven (JEI / CraftTweaker / Bookshelf)'
             url = 'https://maven.blamejared.com'
         }
+        maven {
+            name = "Fuzs Mod Resources (Forge Config API Port)"
+            url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+        }
     }
 
     tasks.withType(JavaCompile).configureEach {
@@ -85,8 +89,6 @@ subprojects {
                 "group": project.group, //Else we target the task's group.
                 "minecraft_version": minecraft_version,
                 "forge_version": forge_version,
-                "forge_loader_version_range": forge_loader_version_range,
-                "forge_version_range": forge_version_range,
                 "minecraft_version_range": minecraft_version_range,
                 "fabric_version": fabric_version,
                 "fabric_loader_version": fabric_loader_version,
@@ -96,7 +98,9 @@ subprojects {
                 "license": license,
                 "description": project.description,
                 "homepage": homepage,
-                "mixinextras_version": mixinextras_version
+                "mixinextras_version": mixinextras_version,
+                "porting_lib_version": porting_lib_version,
+                "jade_version": jade_version
         ]
 
         filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', '*.mixins.json']) {

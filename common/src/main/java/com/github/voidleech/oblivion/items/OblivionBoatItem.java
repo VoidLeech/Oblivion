@@ -1,4 +1,6 @@
 package com.github.voidleech.oblivion.items;
+
+import com.github.voidleech.oblivion.entities.OblivionBoat;
 import com.github.voidleech.oblivion.entities.OblivionBoatEntity;
 import com.github.voidleech.oblivion.entities.OblivionBoatType;
 import com.github.voidleech.oblivion.entities.OblivionChestBoatEntity;
@@ -52,12 +54,8 @@ public class OblivionBoatItem extends Item {
             }
 
             if (hitresult.getType() == HitResult.Type.BLOCK) {
-                Boat boat = this.getBoat(pLevel, hitresult);
-                if(boat instanceof OblivionChestBoatEntity chestBoat) {
-                    chestBoat.setVariant(this.type);
-                } else if(boat instanceof OblivionBoatEntity normalBoat) {
-                    normalBoat.setVariant(this.type);
-                }
+                var boat = this.getBoat(pLevel, hitresult);
+                boat.setVariant(this.type);
                 boat.setYRot(pPlayer.getYRot());
                 if (!pLevel.noCollision(boat, boat.getBoundingBox())) {
                     return InteractionResultHolder.fail(itemstack);
@@ -79,8 +77,9 @@ public class OblivionBoatItem extends Item {
         }
     }
 
-    private Boat getBoat(Level level, HitResult hitResult) {
-        return this.hasChest ? new OblivionChestBoatEntity(level, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z) :
-                new OblivionBoatEntity(level, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z);
+    @SuppressWarnings("unchecked")
+    private <T extends Boat & OblivionBoat> T getBoat(Level level, HitResult hitResult) {
+        return this.hasChest ? (T) new OblivionChestBoatEntity(level, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z) :
+                (T) new OblivionBoatEntity(level, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z);
     }
 }

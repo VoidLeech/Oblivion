@@ -9,6 +9,7 @@
     ],
     "contact": {
         "homepage": "${homepage}",
+        "sources": "${homepage}",
         "issues": "${homepage}/issues"
     },
     "license": "${license}",
@@ -17,6 +18,9 @@
     "entrypoints": {
         "main": [
           "com.github.voidleech.oblivion.OblivionFabric"
+        ],
+        "client": [
+            "com.github.voidleech.oblivion.OblivionFabricClient"
         ]
     },
     "mixins": [
@@ -27,10 +31,16 @@
         "fabricloader": ">=0.14",
         "fabric": "*",
         "minecraft": "${minecraft_version}",
-        "java": ">=17"
+        "java": ">=17",
+        "porting_lib_brewing": ">=${porting_lib_version}"
     },
     "suggests": {
-        "another-mod": "*"
+        "jade": ">=${jade_version}"
+    },
+    "custom": {
+        "modmenu": {
+            "badges": [ "library" ]
+        }
     }
 }
   

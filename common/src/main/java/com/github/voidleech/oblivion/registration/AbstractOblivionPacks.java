@@ -1,6 +1,6 @@
 package com.github.voidleech.oblivion.registration;
 
-import com.github.voidleech.oblivion.platform.Services;
+import com.github.voidleech.oblivion.services.Services;
 import net.minecraft.SharedConstants;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
@@ -28,7 +28,7 @@ public abstract class AbstractOblivionPacks {
     /**
      * @param modEventBus mod event bus
      */
-    public void register(IEventBus modEventBus){
+    /*public void register(IEventBus modEventBus){
         modEventBus.addListener(this::addResourcePacks);
     }
 
@@ -53,5 +53,5 @@ public abstract class AbstractOblivionPacks {
                 PackSource.BUILT_IN
         );
         event.addRepositorySource((packConsumer) -> {packConsumer.accept(pack);});
-    }
+    }*/
 }

@@ -1,15 +1,18 @@
-package com.github.voidleech.oblivion.platform.services;
+package com.github.voidleech.oblivion.util;
+
+import com.github.voidleech.oblivion.services.Services;
 
 import java.nio.file.Path;
 
-public interface IPlatformHelper {
-
+public class Platform {
     /**
      * Gets the name of the current platform
      *
      * @return The name of the current platform.
      */
-    String getPlatformName();
+    public static String getPlatformName() {
+        return Services.PLATFORM.getPlatformName();
+    }
 
     /**
      * Checks if a mod with the given id is loaded.
@@ -17,7 +20,9 @@ public interface IPlatformHelper {
      * @param modId The mod to check if it is loaded.
      * @return True if the mod is loaded, false otherwise.
      */
-    boolean isModLoaded(String modId);
+    public static boolean isModLoaded(String modId) {
+        return Services.PLATFORM.isModLoaded(modId);
+    }
 
     /**
      * Checks if a mod with the given id is loaded early.
@@ -25,23 +30,29 @@ public interface IPlatformHelper {
      * @param modId The mod to check if it is loaded.
      * @return True if the mod is loaded, false otherwise.
      */
-    boolean isModEarlyLoaded(String modId);
+    public static boolean isModEarlyLoaded(String modId) {
+        return Services.PLATFORM.isModEarlyLoaded(modId);
+    }
 
-    Path getResourcePath(String modId, String resource);
+    public static Path getResourcePath(String modId, String resource) {
+        return Services.PLATFORM.getResourcePath(modId, resource);
+    }
 
     /**
      * Check if the game is currently in a development environment.
      *
      * @return True if in a development environment, false otherwise.
      */
-    boolean isDevelopmentEnvironment();
+    public static boolean isDevelopmentEnvironment() {
+        return Services.PLATFORM.isDevelopmentEnvironment();
+    }
 
     /**
      * Gets the name of the environment type as a string.
      *
      * @return The name of the environment type.
      */
-    default String getEnvironmentName() {
+    public static String getEnvironmentName() {
 
         return isDevelopmentEnvironment() ? "development" : "production";
     }

@@ -6,7 +6,11 @@ plugins {
 }
 
 base {
-    archivesName = "${mod_name}-fabric-${minecraft_version}"
+    archivesName = "${mod_id}-fabric-${minecraft_version}"
+}
+
+repositories {
+    maven { url = "https://mvn.devos.one/releases/" }
 }
 
 dependencies {
@@ -14,8 +18,15 @@ dependencies {
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":common")
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
     include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${mixinextras_version}")))
+
+    modImplementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${configapiport_version}")
+    modImplementation("io.github.fabricators_of_create.Porting-Lib:brewing:${porting_lib_version}")
+
+    modImplementation("maven.modrinth:jade:${jade_version}+fabric")
 }
 
 loom {

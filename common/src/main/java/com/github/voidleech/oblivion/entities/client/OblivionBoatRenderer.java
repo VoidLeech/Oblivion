@@ -1,6 +1,5 @@
 package com.github.voidleech.oblivion.entities.client;
 
-import com.github.voidleech.oblivion.Constants;
 import com.github.voidleech.oblivion.Oblivion;
 import com.github.voidleech.oblivion.entities.OblivionBoatEntity;
 import com.github.voidleech.oblivion.entities.OblivionBoatType;
@@ -29,7 +28,7 @@ public class OblivionBoatRenderer extends BoatRenderer {
 
     public OblivionBoatRenderer(EntityRendererProvider.Context pContext, boolean pChestBoat) {
         super(pContext, pChestBoat);
-        registerBoatResources(OblivionBoatType.FallbackType.class, Constants.MOD_ID, pContext, pChestBoat);
+        registerBoatResources(OblivionBoatType.FallbackType.class, Oblivion.MOD_ID, pContext, pChestBoat);
         for (Map.Entry<Class<? extends OblivionBoatType>, String> entry : boatTypeClasses.entrySet()){
             registerBoatResources(entry.getKey(), entry.getValue(), pContext, pChestBoat);
         }

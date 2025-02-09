@@ -1,6 +1,6 @@
 package com.github.voidleech.oblivion.mixin.plugin;
 
-import com.github.voidleech.oblivion.platform.Services;
+import com.github.voidleech.oblivion.services.Services;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -55,7 +55,7 @@ public abstract class AbstractOblivionMixinPlugin implements IMixinConfigPlugin 
     }
 
     @Override
-    public void postApply(String targetClassName, org.objectweb.asm.tree.ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
+    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
 
     }
 }

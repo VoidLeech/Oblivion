@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "${forge_loader_version_range}"
+loaderVersion = "[${forge_version},)"
 license = "${license}"
 issueTrackerURL="${homepage}/issues"
 
@@ -17,7 +17,7 @@ description = '''${description}'''
 [[dependencies.${mod_id}]]
     modId = "forge"
     mandatory = true
-    versionRange = "${forge_version_range}"
+    versionRange = "[${forge_version},)"
     ordering = "NONE"
     side = "BOTH"
 [[dependencies.${mod_id}]]
@@ -26,3 +26,7 @@ description = '''${description}'''
     versionRange = "${minecraft_version_range}"
     ordering = "NONE"
     side = "BOTH"
+[[dependencies.${mod_id}]]
+    modId = "jade"
+    mandatory = false
+    versionRange = "[${jade_version},)"

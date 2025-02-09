@@ -10,7 +10,7 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
-public class OblivionBoatEntity extends Boat {
+public class OblivionBoatEntity extends Boat implements OblivionBoat {
     private static final EntityDataAccessor<String> DATA_ID_TYPE = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.STRING);
 
     public OblivionBoatEntity(EntityType<? extends Boat> pEntityType, Level pLevel) {
