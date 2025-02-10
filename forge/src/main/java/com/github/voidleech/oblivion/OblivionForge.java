@@ -22,6 +22,7 @@ public class OblivionForge {
         modEventBus.addListener(ForgePlatformHelper::addBrewingRecipes);
         modEventBus.addListener(ForgePlatformHelper::addComposting);
         modEventBus.addListener(ForgePlatformHelper::registerFuels);
+        modEventBus.addListener(ForgePlatformHelper::registerPacks);
 
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> () -> OblivionForgeClient.init(forgeEventBus, modEventBus));
     }

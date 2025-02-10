@@ -1,5 +1,6 @@
 package com.github.voidleech.oblivion.services.services;
 
+import com.github.voidleech.oblivion.util.Registration;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -106,4 +107,11 @@ public interface IPlatformHelper {
      * @param modId
      */
     void registerConfig(ForgeConfigSpec spec, ModConfig.Type type, String modId);
+
+    /**
+     * Registers an addition resource/data pack
+     * @param pack
+     * @param modId
+     */
+    void addPack(Registration.PackData pack, String modId);
 }

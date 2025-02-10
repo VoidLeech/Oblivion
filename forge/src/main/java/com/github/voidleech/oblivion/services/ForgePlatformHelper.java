@@ -1,8 +1,12 @@
 package com.github.voidleech.oblivion.services;
 
 import com.github.voidleech.oblivion.Oblivion;
+import com.github.voidleech.oblivion.registration.BuiltInResourcePackSource;
 import com.github.voidleech.oblivion.services.services.IPlatformHelper;
+import com.github.voidleech.oblivion.util.Registration;
 import net.minecraft.core.Registry;
+import net.minecraft.server.packs.PathPackResources;
+import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -14,6 +18,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.brewing.BrewingRecipe;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -40,6 +45,7 @@ public class ForgePlatformHelper implements IPlatformHelper {
     private static Set<Tuple<Supplier<ItemLike>, Float>> COMPOSTING_CHANCES = Collections.synchronizedSet(new HashSet<>());
     private static final Map<Item, Integer> FUEL_TIMES = new HashMap<>();
     private static Set<FuelTime> FUEL_TIMES_TO_REGISTER = Collections.synchronizedSet(new HashSet<>());
+    private static Map<Registration.PackData, String> PACKS = new HashMap<>();
 
     @Override
     public String getPlatformName() {
@@ -149,6 +155,28 @@ public class ForgePlatformHelper implements IPlatformHelper {
     @Override
     public void registerConfig(ForgeConfigSpec spec, ModConfig.Type type, String modId) {
         ModLoadingContext.get().registerConfig(type, spec);
+    }
+
+    public static void registerPacks(AddPackFindersEvent event) {
+        for (Map.Entry<Registration.PackData, String> entry : PACKS.entrySet()) {
+            Registration.PackData data = entry.getKey();
+            String modId = entry.getValue();
+            Path resourcePath = Services.PLATFORM.getResourcePath(modId, "packs/resource/" + data.name());
+            Pack pack = Pack.readMetaAndCreate("builtin/" + data.name(),
+                    data.display(),
+                    data.required(),
+                    (path) -> new PathPackResources(path, resourcePath, true),
+                    data.type(),
+                    Pack.Position.TOP,
+                    new BuiltInResourcePackSource(data.enabledByDefault() || data.required())
+            );
+            event.addRepositorySource((packConsumer) -> {packConsumer.accept(pack);});
+        }
+    }
+
+    @Override
+    public void addPack(Registration.PackData pack, String modId) {
+        PACKS.put(pack, modId);
     }
 
     private record Mix(Supplier<Potion> input, Supplier<Item> ingredient, Supplier<Potion> output) {

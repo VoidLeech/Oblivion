@@ -1,23 +1,23 @@
 package com.github.voidleech.oblivion.services;
 
 import com.github.voidleech.oblivion.services.services.IPlatformHelper;
+import com.github.voidleech.oblivion.util.Registration;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
 import io.github.fabricators_of_create.porting_lib.brewing.BrewingRecipeRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.fabricmc.fabric.impl.content.registry.FuelRegistryImpl;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.ComposterBlock;
-import net.minecraft.world.level.block.FurnaceBlock;
-import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
 
@@ -81,5 +81,14 @@ public class FabricPlatformHelper implements IPlatformHelper {
     @Override
     public void registerConfig(ForgeConfigSpec spec, ModConfig.Type type, String modId) {
         ForgeConfigRegistry.INSTANCE.register(modId, type, spec);
+    }
+
+    @Override
+    public void addPack(Registration.PackData pack, String modId) {
+        ResourceManagerHelperImpl.registerBuiltinResourcePack(new ResourceLocation(modId, pack.name()),
+                "packs/" + (pack.type() == PackType.CLIENT_RESOURCES ? "resource" : "data"),
+                FabricLoader.getInstance().getModContainer(modId).get(), pack.display(),
+                pack.required() ? ResourcePackActivationType.ALWAYS_ENABLED :
+                        pack.enabledByDefault() ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL);
     }
 }

@@ -32,3 +32,4 @@ This project is released under the [Avoiding Leeching License, version 1.1](LICE
 #### Third-Party Content
 The boat code in this project is based on and contains code from Kaupenjoe's 1.20.X Forge Tutorial, which is licensed under the [MIT license](other-licenses/mit-kaupenjoe).
 The multiloader-compatible registration code in this project is based on and contains code from Lilypuree's Decorative Blocks, which is licensed under the [MIT license](other-licenses/mit-lilypuree).
+The code for enabled-by-default resource/data packs on the Forge side is based on FabricMC's Fabric, which is licensed under the [Apache 2.0 license](other-licenses/apache-fabric).
