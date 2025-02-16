@@ -85,8 +85,8 @@ public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
     public void addPack(Registration.PackData pack, String modId) {
-        ResourceManagerHelperImpl.registerBuiltinResourcePack(new ResourceLocation(modId, pack.name()),
-                "packs/" + (pack.type() == PackType.CLIENT_RESOURCES ? "resource" : "data"),
+        ResourceManagerHelperImpl.registerBuiltinResourcePack(new ResourceLocation(modId, pack.name() + (pack.type() == PackType.CLIENT_RESOURCES ? "_r" : "_d")),
+                "packs/" + ((pack.type() == PackType.CLIENT_RESOURCES ? "resource/" : "data/") + pack.name()),
                 FabricLoader.getInstance().getModContainer(modId).get(), pack.display(),
                 pack.required() ? ResourcePackActivationType.ALWAYS_ENABLED :
                         pack.enabledByDefault() ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL);

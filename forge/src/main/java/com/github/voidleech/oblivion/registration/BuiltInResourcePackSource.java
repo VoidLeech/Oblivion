@@ -18,10 +18,6 @@ public class BuiltInResourcePackSource implements PackSource {
 
     @Override
     public boolean shouldAddAutomatically() {
-        return true;
-    }
-
-    public boolean enabledByDefault() {
         return enabledByDefault;
     }
 }

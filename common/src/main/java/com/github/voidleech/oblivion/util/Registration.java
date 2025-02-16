@@ -21,7 +21,7 @@ public class Registration {
      * @param <I>
      * @param <T>
      */
-    <I, T extends I> Supplier<T> register(Registry<I> registry, String modId, String name, Supplier<T> sup) {
+    public static <I, T extends I> Supplier<T> register(Registry<I> registry, String modId, String name, Supplier<T> sup) {
         return Services.PLATFORM.register(registry, modId, name, sup);
     }
 
@@ -31,7 +31,7 @@ public class Registration {
      * @param type Side that the config applies to
      * @param modId
      */
-    void registerConfig(ForgeConfigSpec spec, ModConfig.Type type, String modId) {
+    public static void registerConfig(ForgeConfigSpec spec, ModConfig.Type type, String modId) {
         Services.PLATFORM.registerConfig(spec, type, modId);
     }
 
@@ -40,7 +40,7 @@ public class Registration {
      * @param packs
      * @param modId
      */
-    public void registerPacks(List<PackData> packs, String modId) {
+    public static void registerPacks(List<PackData> packs, String modId) {
         for (PackData data : packs) {
             Services.PLATFORM.addPack(data, modId);
         }

@@ -5,6 +5,7 @@ import com.github.voidleech.oblivion.registration.BuiltInResourcePackSource;
 import com.github.voidleech.oblivion.services.services.IPlatformHelper;
 import com.github.voidleech.oblivion.util.Registration;
 import net.minecraft.core.Registry;
+import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.PathPackResources;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.util.Tuple;
@@ -161,11 +162,12 @@ public class ForgePlatformHelper implements IPlatformHelper {
         for (Map.Entry<Registration.PackData, String> entry : PACKS.entrySet()) {
             Registration.PackData data = entry.getKey();
             String modId = entry.getValue();
-            Path resourcePath = Services.PLATFORM.getResourcePath(modId, "packs/resource/" + data.name());
+            Path resourcePath = Services.PLATFORM.getResourcePath(modId, "packs/" +
+                    ((data.type() == PackType.CLIENT_RESOURCES ? "resource/" : "data/") + data.name()));
             Pack pack = Pack.readMetaAndCreate("builtin/" + data.name(),
                     data.display(),
                     data.required(),
-                    (path) -> new PathPackResources(path, resourcePath, true),
+                    (path) -> new PathPackResources(path, resourcePath, false),
                     data.type(),
                     Pack.Position.TOP,
                     new BuiltInResourcePackSource(data.enabledByDefault() || data.required())

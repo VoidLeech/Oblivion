@@ -21,7 +21,7 @@ public class OblivionForgeClient {
         modEventBus.addListener(OblivionForgeClient::registerModelLayers);
     }
 
-    public static void onClientSetup(FMLClientSetupEvent event)
+    private static void onClientSetup(FMLClientSetupEvent event)
     {
         event.enqueueWork(() -> {
             EntityRenderers.register(OblivionEntities.BOAT.get(), context -> new OblivionBoatRenderer(context, false));
@@ -29,12 +29,12 @@ public class OblivionForgeClient {
         });
     }
 
-    public static void registerBER(EntityRenderersEvent.RegisterRenderers event){
+    private static void registerBER(EntityRenderersEvent.RegisterRenderers event){
         event.registerBlockEntityRenderer(OblivionBlockEntities.SIGN.get(), SignRenderer::new);
         event.registerBlockEntityRenderer(OblivionBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
     }
 
-    public static void registerModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
+    private static void registerModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(OblivionModelLayers.FALLBACK_BOAT_LAYER, BoatModel::createBodyModel);
         event.registerLayerDefinition(OblivionModelLayers.FALLBACK_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
     }

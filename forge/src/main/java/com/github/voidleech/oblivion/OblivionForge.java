@@ -24,6 +24,6 @@ public class OblivionForge {
         modEventBus.addListener(ForgePlatformHelper::registerFuels);
         modEventBus.addListener(ForgePlatformHelper::registerPacks);
 
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> () -> OblivionForgeClient.init(forgeEventBus, modEventBus));
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> OblivionForgeClient.init(forgeEventBus, modEventBus));
     }
 }

@@ -82,11 +82,7 @@ dependencies {
         jarJar.ranged(it, "[${mixinextras_version},)")
     }
 
-   implementation("maven.modrinth:jade:${jade_version}+forge")
-}
-
-tasks.named("assemble").configure {
-    dependsOn("jarJar")
+   implementation fg.deobf("maven.modrinth:jade:${jade_version}+forge")
 }
 
 tasks.withType(JavaCompile).configureEach {

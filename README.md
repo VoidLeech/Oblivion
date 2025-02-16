@@ -21,8 +21,8 @@ A Minecraft modding library. After implementation (here, once), cast the details
 **Q: Can this be used in my modpack?**  
 A: Yes, but do note our license does not allow directly including the mod files in your pack.
 
-**Q: Multiloader? Newer versions?**  
-A: Both planned, in that order, but multiloader is proving problematic with how the Mod-Agnostic Signs/Boats are registered.
+**Q: Newer versions?**  
+A: Planned, eventually.
 
 ### Licensing
 This project is released under the [Avoiding Leeching License, version 1.1](LICENSE).  
@@ -32,4 +32,4 @@ This project is released under the [Avoiding Leeching License, version 1.1](LICE
 #### Third-Party Content
 The boat code in this project is based on and contains code from Kaupenjoe's 1.20.X Forge Tutorial, which is licensed under the [MIT license](other-licenses/mit-kaupenjoe).
 The multiloader-compatible registration code in this project is based on and contains code from Lilypuree's Decorative Blocks, which is licensed under the [MIT license](other-licenses/mit-lilypuree).
-The code for enabled-by-default resource/data packs on the Forge side is based on FabricMC's Fabric, which is licensed under the [Apache 2.0 license](other-licenses/apache-fabric).
+The code for enabled-by-default resource packs on the Forge side, and for additional valid blocks on the sign BET on the Fabric side, is based on FabricMC's Fabric, which is licensed under the [Apache 2.0 license](other-licenses/apache-fabric).

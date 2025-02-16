@@ -17,31 +17,19 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public class OblivionBlockEntities {
-    private static final Set<SignBlock> SIGNS = Collections.synchronizedSet(new HashSet<>());
-    private static final Set<SignBlock> HANGING_SIGNS = Collections.synchronizedSet(new HashSet<>());
 
     public static Supplier<BlockEntityType<OblivionSignBlockEntity>> SIGN = register("sign", () ->
             BlockEntityType.Builder.of(OblivionSignBlockEntity::new,
-                    SIGNS.toArray(new Block[0])
+                    OblivionInternal.SIGNS.toArray(new Block[0])
             ).build(null));
 
     public static Supplier<BlockEntityType<OblivionHangingSignBlockEntity>> HANGING_SIGN = register("hanging_sign", () ->
             BlockEntityType.Builder.of(OblivionHangingSignBlockEntity::new,
-                    HANGING_SIGNS.toArray(new Block[0])
+                    OblivionInternal.HANGING_SIGNS.toArray(new Block[0])
             ).build(null));
 
     public static <T extends BlockEntityType<E>, E extends BlockEntity> Supplier<T> register(String name, Supplier<T> sup){
         return Services.PLATFORM.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Oblivion.MOD_ID, name, sup);
-    }
-
-    @ApiStatus.Internal
-    public static void addSign(SignBlock sign){
-        SIGNS.add(sign);
-    }
-
-    @ApiStatus.Internal
-    public static void addHangingSign(SignBlock hangingSign){
-        HANGING_SIGNS.add(hangingSign);
     }
 
     public static void init() {

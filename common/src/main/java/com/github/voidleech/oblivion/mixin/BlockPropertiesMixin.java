@@ -1,13 +1,13 @@
 package com.github.voidleech.oblivion.mixin;
 
-import com.github.voidleech.oblivion.propertyUndoers.IBlockPropertyUndoerExtensions;
+import com.github.voidleech.oblivion.extensions.property.IBlockPropertyUndoer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(BlockBehaviour.Properties.class)
-public abstract class BlockPropertiesMixin implements IBlockPropertyUndoerExtensions {
+public abstract class BlockPropertiesMixin implements IBlockPropertyUndoer {
 
     @Shadow
     boolean hasCollision;

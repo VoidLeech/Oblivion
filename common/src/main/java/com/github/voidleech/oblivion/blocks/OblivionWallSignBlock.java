@@ -2,6 +2,7 @@ package com.github.voidleech.oblivion.blocks;
 
 import com.github.voidleech.oblivion.blocks.entities.OblivionSignBlockEntity;
 import com.github.voidleech.oblivion.init.OblivionBlockEntities;
+import com.github.voidleech.oblivion.init.OblivionInternal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.WallSignBlock;
@@ -17,7 +18,7 @@ import javax.annotation.Nullable;
 public class OblivionWallSignBlock extends WallSignBlock {
     public OblivionWallSignBlock(Properties pProperties, WoodType pType) {
         super(pProperties, pType);
-        OblivionBlockEntities.addSign(this);
+        OblivionInternal.SIGNS.add(this);
     }
 
     @Override

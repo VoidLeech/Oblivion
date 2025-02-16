@@ -2,6 +2,7 @@ package com.github.voidleech.oblivion.blocks;
 
 import com.github.voidleech.oblivion.blocks.entities.OblivionHangingSignBlockEntity;
 import com.github.voidleech.oblivion.init.OblivionBlockEntities;
+import com.github.voidleech.oblivion.init.OblivionInternal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
@@ -17,7 +18,7 @@ import javax.annotation.Nullable;
 public class OblivionHangingSignBlock extends CeilingHangingSignBlock {
     public OblivionHangingSignBlock(Properties pProperties, WoodType pType) {
         super(pProperties, pType);
-        OblivionBlockEntities.addHangingSign(this);
+        OblivionInternal.HANGING_SIGNS.add(this);
     }
 
     @Override
