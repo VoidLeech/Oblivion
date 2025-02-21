@@ -4,7 +4,7 @@
   "package": "com.github.voidleech.oblivion.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["BlockPropertiesMixin", "HangingSignBlockEntityMixin"],
+  "mixins": ["BlockPropertiesMixin", "BoatMixin", "HangingSignBlockEntityMixin"],
   "client": [
   ],
   "server": [

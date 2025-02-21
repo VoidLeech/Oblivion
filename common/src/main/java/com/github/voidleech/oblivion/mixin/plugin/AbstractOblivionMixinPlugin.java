@@ -11,15 +11,15 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class AbstractOblivionMixinPlugin implements IMixinConfigPlugin {
-    private static final Map<String, String> REQUIRED_MODS_FOR_MIXINS = new HashMap<>();
+    private static final Map<String, Condition> CONDITIONS = new HashMap<>();
 
-    public AbstractOblivionMixinPlugin(Map<String, String> kvps){
-        REQUIRED_MODS_FOR_MIXINS.putAll(kvps);
+    public AbstractOblivionMixinPlugin(Map<String, Condition> kvps){
+        CONDITIONS.putAll(kvps);
     }
 
-    public AbstractOblivionMixinPlugin(String prefix, Map<String, String> kvps){
-        for (Map.Entry<String, String> entry : kvps.entrySet()) {
-            REQUIRED_MODS_FOR_MIXINS.put(prefix + entry.getKey(), entry.getValue());
+    public AbstractOblivionMixinPlugin(String prefix, Map<String, Condition> kvps){
+        for (Map.Entry<String, Condition> entry : kvps.entrySet()) {
+            CONDITIONS.put(prefix + entry.getKey(), entry.getValue());
         }
     }
 
@@ -35,8 +35,16 @@ public abstract class AbstractOblivionMixinPlugin implements IMixinConfigPlugin 
 
     @Override
     public boolean shouldApplyMixin(String target, String mixinToApply) {
-        String targetMod = REQUIRED_MODS_FOR_MIXINS.get(mixinToApply);
-        return targetMod == null || Services.PLATFORM.isModEarlyLoaded(targetMod);
+        Condition condition = CONDITIONS.get(mixinToApply);
+        if (condition != null) {
+            return condition.shouldLoad();
+        }
+        int afterPrefix = mixinToApply.indexOf("compat.") + 7;
+        if (afterPrefix == 6) {
+            return true;
+        }
+        String targetMod = mixinToApply.substring(afterPrefix, mixinToApply.indexOf('.', afterPrefix));
+        return Services.PLATFORM.isModEarlyLoaded(targetMod);
     }
 
     @Override

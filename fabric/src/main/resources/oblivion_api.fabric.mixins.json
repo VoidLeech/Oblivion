@@ -8,6 +8,7 @@
     "BlockEntityTypeMixin"
   ],
   "client": [
+    "BoatRendererMixin"
   ],
   "server": [
   ],

@@ -26,7 +26,8 @@ dependencies {
     modImplementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${configapiport_version}")
     modImplementation("io.github.fabricators_of_create.Porting-Lib:brewing:${porting_lib_version}")
 
-    modImplementation("maven.modrinth:jade:${jade_version}+fabric")
+    modCompileOnly("maven.modrinth:jade:${jade_version}+fabric")
+    modLocalRuntime("maven.modrinth:jade:${jade_version}+fabric")
 }
 
 loom {

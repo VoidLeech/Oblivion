@@ -11,7 +11,7 @@ A Minecraft modding library. After implementation (here, once), cast the details
 - Abstract Mixin Plugin for easy mod-dependent mixins.
 - Some extension methods for Block-, Item-, or FluidTypeProperties to undo calls like `noCollission()` \[sic\] (atm only a subset of properties is available).
 - Advancement Brute Forcer to grant advancements by name, regardless of the actual criteria defined.
-- Abstract System to provide additional resource packs.
+- Easy System to provide additional resource/data packs.
 - Simple Registration of Potion Recipes, Compostability, and Furnace Fuel Time.
 - Mod-agnostic Sign Registration.
 - Mod-agnostic Boat Registration.
@@ -27,7 +27,7 @@ A: Planned, eventually.
 ### Licensing
 This project is released under the [Avoiding Leeching License, version 1.1](LICENSE).  
 
-[HangingSignBlockEntityMixin.java](common/src/main/java/com/github/voidleech/oblivion/mixin/HangingSignBlockEntityMixin.java) is alternatively released under the [MIT License](other-licenses/mit-self): it ensures that the `type` parameter in the HangingSignBlockEntity superclasses is set to the correct type (ugh vanilla why hardcode it), which is relevant if someone mixes into the constructor of a superclass and uses the parameter, and is compatible with other mixins like it, so feel free to use.
+[HangingSignBlockEntityMixin.java](common/src/main/java/com/github/voidleech/oblivion/mixin/HangingSignBlockEntityMixin.java) is alternatively released under the [MIT License](other-licenses/mit-self): it ensures that the `type` parameter in the HangingSignBlockEntity superclass constructors is set to the correct type (ugh vanilla why hardcode it), which is relevant if someone mixes into there and uses the parameter, and is compatible with other mixins like it, so feel free to use.
 
 #### Third-Party Content
 The boat code in this project is based on and contains code from Kaupenjoe's 1.20.X Forge Tutorial, which is licensed under the [MIT license](other-licenses/mit-kaupenjoe).

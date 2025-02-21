@@ -61,7 +61,7 @@ public interface OblivionBoatType extends StringRepresentable{
 
         @Override
         public Block getPlanks() {
-            return Blocks.AIR;
+            return Blocks.CAKE;
         }
     }
 }
