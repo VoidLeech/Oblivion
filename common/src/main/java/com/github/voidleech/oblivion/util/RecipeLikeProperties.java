@@ -16,7 +16,7 @@ public class RecipeLikeProperties {
      * @param ingredient
      * @param output
      */
-    public static void addMix(Supplier<Potion> input, Supplier<Item> ingredient, Supplier<Potion> output) {
+    public static void addMix(Supplier<? extends Potion> input, Supplier<? extends Item> ingredient, Supplier<? extends Potion> output) {
         Services.PLATFORM.addMix(input, ingredient, output);
     }
 
@@ -27,7 +27,7 @@ public class RecipeLikeProperties {
      * @param ingredient
      * @param output
      */
-    public static void addBrewingRecipe(Supplier<Ingredient> input, Supplier<Ingredient> ingredient, Supplier<ItemStack> output) {
+    public static void addBrewingRecipe(Supplier<? extends Ingredient> input, Supplier<? extends Ingredient> ingredient, Supplier<? extends ItemStack> output) {
         Services.PLATFORM.addBrewingRecipe(input, ingredient, output);
     }
 
@@ -36,7 +36,7 @@ public class RecipeLikeProperties {
      * @param item to be composted.
      * @param chance to produce a layer in the composter.
      */
-    public static void addCompostable(Supplier<ItemLike> item, float chance) {
+    public static void addCompostable(Supplier<? extends ItemLike> item, float chance) {
         Services.PLATFORM.addCompostable(item, chance);
     }
 
@@ -45,7 +45,7 @@ public class RecipeLikeProperties {
      * @param item to be used as fuel
      * @param burnTime ticks to burn. A standard furnace recipe takes 200 ticks.
      */
-    public static void addFurnaceFuel(Supplier<Item> item, int burnTime){
+    public static void addFurnaceFuel(Supplier<? extends ItemLike> item, int burnTime){
         Services.PLATFORM.addFurnaceFuel(item, burnTime);
     }
 }

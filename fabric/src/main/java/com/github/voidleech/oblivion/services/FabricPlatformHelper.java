@@ -1,5 +1,6 @@
 package com.github.voidleech.oblivion.services;
 
+import com.github.voidleech.oblivion.mixin.accessor.ComposterBlockInvoker;
 import com.github.voidleech.oblivion.services.services.IPlatformHelper;
 import com.github.voidleech.oblivion.util.Registration;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
@@ -8,6 +9,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl;
 import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.Version;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -39,7 +41,7 @@ public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
     public boolean isModEarlyLoaded(String modId) {
-        return FabricLoader.getInstance().isModLoaded(modId);
+        return isModLoaded(modId);
     }
 
     @Override
@@ -59,22 +61,22 @@ public class FabricPlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public void addMix(Supplier<Potion> input, Supplier<Item> ingredient, Supplier<Potion> output) {
+    public void addMix(Supplier<? extends Potion> input, Supplier<? extends Item> ingredient, Supplier<? extends Potion> output) {
         PotionBrewing.addMix(input.get(), ingredient.get(), output.get());
     }
 
     @Override
-    public void addBrewingRecipe(Supplier<Ingredient> input, Supplier<Ingredient> ingredient, Supplier<ItemStack> output) {
+    public void addBrewingRecipe(Supplier<? extends Ingredient> input, Supplier<? extends Ingredient> ingredient, Supplier<? extends ItemStack> output) {
         BrewingRecipeRegistry.addRecipe(input.get(), ingredient.get(), output.get());
     }
 
     @Override
-    public void addCompostable(Supplier<ItemLike> item, float chance) {
-        ComposterBlock.add(chance, item.get());
+    public void addCompostable(Supplier<? extends ItemLike> item, float chance) {
+        ComposterBlockInvoker.oblivion$add(chance, item.get());
     }
 
     @Override
-    public void addFurnaceFuel(Supplier<Item> item, int burnTime) {
+    public void addFurnaceFuel(Supplier<? extends ItemLike> item, int burnTime) {
         FuelRegistry.INSTANCE.add(item.get(), burnTime);
     }
 

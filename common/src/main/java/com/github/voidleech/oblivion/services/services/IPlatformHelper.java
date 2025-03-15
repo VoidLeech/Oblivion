@@ -75,7 +75,7 @@ public interface IPlatformHelper {
      * @param ingredient
      * @param output
      */
-    void addMix(Supplier<Potion> input, Supplier<Item> ingredient, Supplier<Potion> output);
+    void addMix(Supplier<? extends Potion> input, Supplier<? extends Item> ingredient, Supplier<? extends Potion> output);
 
     /**
      * Adds a brewing recipe. For brewing that has a non-potion as input or output.
@@ -84,21 +84,21 @@ public interface IPlatformHelper {
      * @param ingredient
      * @param output
      */
-    void addBrewingRecipe(Supplier<Ingredient> input, Supplier<Ingredient> ingredient, Supplier<ItemStack> output);
+    void addBrewingRecipe(Supplier<? extends Ingredient> input, Supplier<? extends Ingredient> ingredient, Supplier<? extends ItemStack> output);
 
     /**
      * Adds an item to the composter.
      * @param item to be composted.
      * @param chance to produce a layer in the composter.
      */
-    void addCompostable(Supplier<ItemLike> item, float chance);
+    void addCompostable(Supplier<? extends ItemLike> item, float chance);
 
     /**
      * Adds an item as furnace fuel. Use only when getBurnTime somehow isn't available to override.
      * @param item to be used as fuel
      * @param burnTime ticks to burn. A standard furnace recipe takes 200 ticks.
      */
-    void addFurnaceFuel(Supplier<Item> item, int burnTime);
+    void addFurnaceFuel(Supplier<? extends ItemLike> item, int burnTime);
 
     /**
      * Registers a config

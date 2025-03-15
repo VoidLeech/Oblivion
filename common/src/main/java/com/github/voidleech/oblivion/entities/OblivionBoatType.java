@@ -1,5 +1,6 @@
 package com.github.voidleech.oblivion.entities;
 
+import com.github.voidleech.oblivion.Oblivion;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -45,7 +46,7 @@ public interface OblivionBoatType extends StringRepresentable{
 
         @Override
         public String getNamespace() {
-            return "oblivion_api";
+            return Oblivion.MOD_ID;
         }
 
         // Something for the trouble of having a fallback boat in your world

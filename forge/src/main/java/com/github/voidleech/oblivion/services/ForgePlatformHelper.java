@@ -1,6 +1,8 @@
 package com.github.voidleech.oblivion.services;
 
 import com.github.voidleech.oblivion.Oblivion;
+import com.github.voidleech.oblivion.mixin.accessor.ComposterBlockInvoker;
+import com.github.voidleech.oblivion.mixin.accessor.PotionBrewingInvoker;
 import com.github.voidleech.oblivion.registration.BuiltInResourcePackSource;
 import com.github.voidleech.oblivion.services.services.IPlatformHelper;
 import com.github.voidleech.oblivion.util.Registration;
@@ -30,6 +32,7 @@ import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.LoadingModList;
 import net.minecraftforge.registries.DeferredRegister;
 
+import java.lang.module.ModuleDescriptor;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,10 +46,10 @@ public class ForgePlatformHelper implements IPlatformHelper {
 
     private static Set<Mix> MIXES = Collections.synchronizedSet(new HashSet<>());
     private static Set<Supplier<BrewingRecipe>> RECIPES = Collections.synchronizedSet(new HashSet<>());
-    private static Set<Tuple<Supplier<ItemLike>, Float>> COMPOSTING_CHANCES = Collections.synchronizedSet(new HashSet<>());
+    private static Set<Tuple<Supplier<? extends ItemLike>, Float>> COMPOSTING_CHANCES = Collections.synchronizedSet(new HashSet<>());
     private static final Map<Item, Integer> FUEL_TIMES = new HashMap<>();
     private static Set<FuelTime> FUEL_TIMES_TO_REGISTER = Collections.synchronizedSet(new HashSet<>());
-    private static Map<Registration.PackData, String> PACKS = new HashMap<>();
+    private static final Map<Registration.PackData, String> PACKS = new HashMap<>();
 
     @Override
     public String getPlatformName() {
@@ -92,7 +95,7 @@ public class ForgePlatformHelper implements IPlatformHelper {
     public static void addBrewingRecipes(FMLCommonSetupEvent event){
         event.enqueueWork(() -> {
             for (Mix mix : MIXES){
-                PotionBrewing.addMix(mix.input.get(), mix.ingredient.get(), mix.output.get());
+                PotionBrewingInvoker.oblivion$addMix(mix.input.get(), mix.ingredient.get(), mix.output.get());
             }
             for (Supplier<BrewingRecipe> recipe : RECIPES){
                 BrewingRecipeRegistry.addRecipe(recipe.get());
@@ -105,19 +108,19 @@ public class ForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public void addMix(Supplier<Potion> input, Supplier<Item> ingredient, Supplier<Potion> output){
+    public void addMix(Supplier<? extends Potion> input, Supplier<? extends Item> ingredient, Supplier<? extends Potion> output){
         MIXES.add(new Mix(input, ingredient, output));
     }
 
     @Override
-    public void addBrewingRecipe(Supplier<Ingredient> input, Supplier<Ingredient> ingredient, Supplier<ItemStack> output){
+    public void addBrewingRecipe(Supplier<? extends Ingredient> input, Supplier<? extends Ingredient> ingredient, Supplier<? extends ItemStack> output){
         RECIPES.add(() -> new BrewingRecipe(input.get(), ingredient.get(), output.get()));
     }
 
     public static void addComposting(FMLCommonSetupEvent event){
         event.enqueueWork(() -> {
-            for (Tuple<Supplier<ItemLike>, Float> pair : COMPOSTING_CHANCES){
-                ComposterBlock.add(pair.getB(), pair.getA().get());
+            for (Tuple<Supplier<? extends ItemLike>, Float> pair : COMPOSTING_CHANCES){
+                ComposterBlockInvoker.oblivion$add(pair.getB(), pair.getA().get());
             }
             // Now that the values are in the ComposterBlock,
             // make sure we don't point at the registry set anymore, so that the memory can get freed.
@@ -126,7 +129,7 @@ public class ForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public void addCompostable(Supplier<ItemLike> item, float chance) {
+    public void addCompostable(Supplier<? extends ItemLike> item, float chance) {
         COMPOSTING_CHANCES.add(new Tuple<>(item, chance));
     }
 
@@ -139,8 +142,8 @@ public class ForgePlatformHelper implements IPlatformHelper {
 
     public static void registerFuels(FMLCommonSetupEvent event) {
         for (FuelTime fuelTime : FUEL_TIMES_TO_REGISTER){
-            if (FUEL_TIMES.put(fuelTime.item().get(), fuelTime.burnTime()) != null){
-                Oblivion.LOGGER.error("Multiple mods using Oblivion set fuel ticks for {}", fuelTime.item.get().getDescriptionId());
+            if (FUEL_TIMES.put(fuelTime.item().get().asItem(), fuelTime.burnTime()) != null){
+                Oblivion.LOGGER.error("Multiple mods using Oblivion set fuel ticks for {}", fuelTime.item.get().asItem().getDescriptionId());
             }
         }
         // Now that the values are in the fuel time map
@@ -149,7 +152,7 @@ public class ForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public void addFurnaceFuel(Supplier<Item> item, int burnTime){
+    public void addFurnaceFuel(Supplier<? extends ItemLike> item, int burnTime){
         FUEL_TIMES_TO_REGISTER.add(new FuelTime(item, burnTime));
     }
 
@@ -181,9 +184,9 @@ public class ForgePlatformHelper implements IPlatformHelper {
         PACKS.put(pack, modId);
     }
 
-    private record Mix(Supplier<Potion> input, Supplier<Item> ingredient, Supplier<Potion> output) {
+    private record Mix(Supplier<? extends Potion> input, Supplier<? extends Item> ingredient, Supplier<? extends Potion> output) {
     }
 
-    private record FuelTime(Supplier<Item> item, int burnTime){
+    private record FuelTime(Supplier<? extends ItemLike> item, int burnTime){
     }
 }
