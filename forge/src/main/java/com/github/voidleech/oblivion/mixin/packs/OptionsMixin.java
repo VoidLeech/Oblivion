@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+/* Copied from net/fabricmc/fabric/mixin/resource/loader/client/GameOptionsMixin.java (1.20.1)
+ * File is changed beyond repackaging/mixin-prefixing/mapping-related changes; adapted for Forge.
+ */
+
 package com.github.voidleech.oblivion.mixin.packs;
 
 import com.github.voidleech.oblivion.Oblivion;

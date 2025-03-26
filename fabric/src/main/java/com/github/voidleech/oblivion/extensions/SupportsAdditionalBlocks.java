@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+/* Copied from net/fabricmc/fabric/api/object/builder/v1/block/entity/FabricBlockEntityType.java (1.21.1)
+ * File is changed beyond repackaging/mixin-prefixing/mapping-related changes; builder-interface not included.
+ */
+
 package com.github.voidleech.oblivion.extensions;
 
 import net.minecraft.world.level.block.Block;

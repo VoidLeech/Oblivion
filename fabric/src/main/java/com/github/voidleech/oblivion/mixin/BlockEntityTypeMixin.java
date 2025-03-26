@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+/* Copied from net/fabricmc/fabric/mixin/object/builder/BlockEntityTypeMixin.java (1.21.1)
+ * File isn't changed beyond repackaging/mixin-prefixing/mapping-related changes.
+ */
+
 package com.github.voidleech.oblivion.mixin;
 
 import com.github.voidleech.oblivion.extensions.SupportsAdditionalBlocks;
