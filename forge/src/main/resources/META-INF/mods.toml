@@ -30,3 +30,5 @@ description = '''${description}'''
     modId = "jade"
     mandatory = false
     versionRange = "[${jade_version},)"
+    ordering = "NONE"
+    side = "CLIENT"

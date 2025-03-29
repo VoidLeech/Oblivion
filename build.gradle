@@ -3,6 +3,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)' apply(false)
     id 'org.spongepowered.gradle.vanilla' version '0.2.1-SNAPSHOT' apply(false)
     id("org.spongepowered.mixin") version "0.7-SNAPSHOT" apply(false)
+    id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
 subprojects {
@@ -107,5 +108,113 @@ subprojects {
             expand expandProps
         }
         inputs.properties(expandProps)
+    }
+}
+
+publishMods {
+    changelog = rootProject.file("NEXT.md").text
+    type = STABLE
+    version = rootProject.version
+    dryRun = true // set to false when publishing
+
+    github {
+        accessToken = providers.environmentVariable("GITHUB_TOKEN")
+        repository = "VoidLeech/Oblivion"
+        commitish = "${minecraft_version}/dev"
+        tagName = "${minecraft_version}-${version}"
+
+        file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
+        additionalFiles.from(
+                project(":common").jar.archiveFile,
+                project(":common").sourcesJar.archiveFile,
+                project(":common").javadocJar.archiveFile,
+                project(":forge").jar.archiveFile,
+                project(":forge").sourcesJar.archiveFile,
+                project(":forge").javadocJar.archiveFile,
+                project(":fabric").jar.archiveFile,
+                project(":fabric").sourcesJar.archiveFile,
+                project(":fabric").javadocJar.archiveFile)
+    }
+
+    // CurseForge options used by both Fabric and Forge
+    def cfOptions = curseforgeOptions {
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        projectId = "1096331"
+        minecraftVersions.add("1.20.1")
+        javaVersions.add(JavaVersion.VERSION_17)
+        clientRequired = true
+        serverRequired = true
+        changelogType = "markdown"
+    }
+
+    // Modrinth options used by both Fabric and Forge
+    def mrOptions = modrinthOptions {
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        projectId = "Ia0I62PO"
+        minecraftVersions.add("1.20.1")
+    }
+
+    // Fabric specific options for CurseForge
+    curseforge("curseforgeFabric") {
+        from cfOptions
+        file project(":fabric")
+        modLoaders.add("fabric")
+        requires {
+            slug = "fabric-api"
+        }
+        requires {
+            slug = "forge-config-api-port-fabric"
+        }
+        requires {
+            slug = "porting-lib"
+        }
+        additionalFile(project(":fabric").sourcesJar.archiveFile) {
+            name = "$rootProject.name Fabric $version Sources"
+        }
+        additionalFile(project(":fabric").javadocJar.archiveFile) {
+            name = "$rootProject.name Fabric $version Javadoc"
+        }
+    }
+
+    // Forge specific options for CurseForge
+    curseforge("curseforgeForge") {
+        from cfOptions
+        file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
+        modLoaders.add("forge")
+        additionalFile(project(":forge").sourcesJar.archiveFile) {
+            name = "$rootProject.name Forge $version Sources"
+        }
+        additionalFile(project(":forge").javadocJar.archiveFile) {
+            name = "$rootProject.name Forge $version Javadoc"
+        }
+    }
+
+    // Fabric specific options for Modrinth
+    modrinth("modrinthFabric") {
+        from mrOptions
+        file project(":fabric")
+        modLoaders.add("fabric")
+        requires {
+            slug = "fabric-api"
+        }
+        requires {
+            slug = "forge-config-api-port"
+        }
+        requires {
+            slug = "porting_lib"
+        }
+        additionalFiles.from(
+                project(":fabric").sourcesJar.archiveFile,
+                project(":fabric").javadocJar.archiveFile)
+    }
+
+    // Forge specific options for Modrinth
+    modrinth("modrinthForge") {
+        from mrOptions
+        file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
+        modLoaders.add("forge")
+        additionalFiles.from(
+                project(":forge").sourcesJar.archiveFile,
+                project(":forge").javadocJar.archiveFile)
     }
 }
