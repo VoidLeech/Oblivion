@@ -121,7 +121,7 @@ publishMods {
         accessToken = providers.environmentVariable("GITHUB_TOKEN")
         repository = "VoidLeech/Oblivion"
         commitish = "${minecraft_version}/dev"
-        tagName = "${minecraft_version}-${version}"
+        tagName = "${minecraft_version}-${rootProject.version}"
 
         file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
         additionalFiles.from(
@@ -131,7 +131,7 @@ publishMods {
                 project(":forge").jar.archiveFile,
                 project(":forge").sourcesJar.archiveFile,
                 project(":forge").javadocJar.archiveFile,
-                project(":fabric").jar.archiveFile,
+                project(":fabric").getTasksByName("remapJar", false).first().archiveFile,
                 project(":fabric").sourcesJar.archiveFile,
                 project(":fabric").javadocJar.archiveFile)
     }
@@ -157,6 +157,7 @@ publishMods {
     // Fabric specific options for CurseForge
     curseforge("curseforgeFabric") {
         from cfOptions
+        displayName = file.map { it.asFile.name }
         file project(":fabric")
         modLoaders.add("fabric")
         requires {
@@ -169,23 +170,24 @@ publishMods {
             slug = "porting-lib"
         }
         additionalFile(project(":fabric").sourcesJar.archiveFile) {
-            name = "$rootProject.name Fabric $version Sources"
+            name = file.map { it.asFile.name }
         }
         additionalFile(project(":fabric").javadocJar.archiveFile) {
-            name = "$rootProject.name Fabric $version Javadoc"
+            name = file.map { it.asFile.name }
         }
     }
 
     // Forge specific options for CurseForge
     curseforge("curseforgeForge") {
         from cfOptions
+        displayName = file.map { it.asFile.name }
         file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
         modLoaders.add("forge")
         additionalFile(project(":forge").sourcesJar.archiveFile) {
-            name = "$rootProject.name Forge $version Sources"
+            name = file.map { it.asFile.name }
         }
         additionalFile(project(":forge").javadocJar.archiveFile) {
-            name = "$rootProject.name Forge $version Javadoc"
+            name = file.map { it.asFile.name }
         }
     }
 
