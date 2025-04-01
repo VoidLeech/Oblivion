@@ -99,6 +99,12 @@ processResources {
     from project(":common").sourceSets.main.resources
 }
 
+// Workaround for SpongePowered/MixinGradle#38
+afterEvaluate {
+    tasks.configureReobfTaskForReobfJar.mustRunAfter(tasks.compileJava)
+    tasks.configureReobfTaskForReobfJarJar.mustRunAfter(tasks.compileJava)
+}
+
 jar.finalizedBy('reobfJar')
 
 publishing {
