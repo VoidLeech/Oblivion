@@ -56,6 +56,7 @@ subprojects {
     }
 
     repositories {
+        mavenLocal()
         mavenCentral()
         maven {
             name = "Cursemaven (CurseForge)"
@@ -183,6 +184,7 @@ publishMods {
         displayName = file.map { it.asFile.name }
         file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
         modLoaders.add("forge")
+        modLoaders.add("neoforge")
         additionalFile(project(":forge").sourcesJar.archiveFile) {
             name = file.map { it.asFile.name }
         }
@@ -215,6 +217,7 @@ publishMods {
         from mrOptions
         file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
         modLoaders.add("forge")
+        modLoaders.add("neoforge")
         additionalFiles.from(
                 project(":forge").sourcesJar.archiveFile,
                 project(":forge").javadocJar.archiveFile)
