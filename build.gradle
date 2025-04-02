@@ -116,7 +116,18 @@ publishMods {
     changelog = rootProject.file("NEXT.md").text
     type = STABLE
     version = rootProject.version
-    dryRun = true // set to false when publishing
+    dryRun = true // false to publish; BUILD FIRST
+
+    File common        = file("common/build/libs/${mod_id}-common-${minecraft_version}-${rootProject.version}.jar")
+    File commonsources = file("common/build/libs/${mod_id}-common-${minecraft_version}-${rootProject.version}-sources.jar")
+    File commonjavadoc = file("common/build/libs/${mod_id}-common-${minecraft_version}-${rootProject.version}-javadoc.jar")
+    File forgeall      = file("forge/build/libs/${mod_id}-forge-${minecraft_version}-${rootProject.version}-all.jar")
+    File forgeslim     = file("forge/build/libs/${mod_id}-forge-${minecraft_version}-${rootProject.version}.jar")
+    File forgesources  = file("forge/build/libs/${mod_id}-forge-${minecraft_version}-${rootProject.version}-sources.jar")
+    File forgejavadoc  = file("forge/build/libs/${mod_id}-forge-${minecraft_version}-${rootProject.version}-javadoc.jar")
+    File fabric        = file("fabric/build/libs/${mod_id}-fabric-${minecraft_version}-${rootProject.version}.jar")
+    File fabricsources = file("fabric/build/libs/${mod_id}-fabric-${minecraft_version}-${rootProject.version}-sources.jar")
+    File fabricjavadoc = file("fabric/build/libs/${mod_id}-fabric-${minecraft_version}-${rootProject.version}-javadoc.jar")
 
     github {
         accessToken = providers.environmentVariable("GITHUB_TOKEN")
@@ -124,17 +135,17 @@ publishMods {
         commitish = "${minecraft_version}/dev"
         tagName = "${minecraft_version}-${rootProject.version}"
 
-        file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
+        file = forgeall
         additionalFiles.from(
-                project(":common").jar.archiveFile,
-                project(":common").sourcesJar.archiveFile,
-                project(":common").javadocJar.archiveFile,
-                project(":forge").jar.archiveFile,
-                project(":forge").sourcesJar.archiveFile,
-                project(":forge").javadocJar.archiveFile,
-                project(":fabric").getTasksByName("remapJar", false).first().archiveFile,
-                project(":fabric").sourcesJar.archiveFile,
-                project(":fabric").javadocJar.archiveFile)
+                common,
+                commonsources,
+                commonjavadoc,
+                forgeslim,
+                forgesources,
+                forgejavadoc,
+                fabric,
+                fabricsources,
+                fabricjavadoc)
     }
 
     // CurseForge options used by both Fabric and Forge
@@ -159,7 +170,7 @@ publishMods {
     curseforge("curseforgeFabric") {
         from cfOptions
         displayName = file.map { it.asFile.name }
-        file project(":fabric")
+        file = fabric
         modLoaders.add("fabric")
         requires {
             slug = "fabric-api"
@@ -170,10 +181,10 @@ publishMods {
         requires {
             slug = "porting-lib"
         }
-        additionalFile(project(":fabric").sourcesJar.archiveFile) {
+        additionalFile(fabricsources) {
             name = file.map { it.asFile.name }
         }
-        additionalFile(project(":fabric").javadocJar.archiveFile) {
+        additionalFile(fabricjavadoc) {
             name = file.map { it.asFile.name }
         }
     }
@@ -182,13 +193,13 @@ publishMods {
     curseforge("curseforgeForge") {
         from cfOptions
         displayName = file.map { it.asFile.name }
-        file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
+        file = forgeall
         modLoaders.add("forge")
         modLoaders.add("neoforge")
-        additionalFile(project(":forge").sourcesJar.archiveFile) {
+        additionalFile(forgesources) {
             name = file.map { it.asFile.name }
         }
-        additionalFile(project(":forge").javadocJar.archiveFile) {
+        additionalFile(forgejavadoc) {
             name = file.map { it.asFile.name }
         }
     }
@@ -196,7 +207,7 @@ publishMods {
     // Fabric specific options for Modrinth
     modrinth("modrinthFabric") {
         from mrOptions
-        file project(":fabric")
+        file = fabric
         modLoaders.add("fabric")
         requires {
             slug = "fabric-api"
@@ -208,18 +219,18 @@ publishMods {
             slug = "porting_lib"
         }
         additionalFiles.from(
-                project(":fabric").sourcesJar.archiveFile,
-                project(":fabric").javadocJar.archiveFile)
+                fabricsources,
+                fabricjavadoc)
     }
 
     // Forge specific options for Modrinth
     modrinth("modrinthForge") {
         from mrOptions
-        file = project(":forge").getTasksByName("jarJar", false).first().archiveFile
+        file = forgeall
         modLoaders.add("forge")
         modLoaders.add("neoforge")
         additionalFiles.from(
-                project(":forge").sourcesJar.archiveFile,
-                project(":forge").javadocJar.archiveFile)
+                forgesources,
+                forgejavadoc)
     }
 }

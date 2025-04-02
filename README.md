@@ -30,6 +30,6 @@ This project is released under the [Avoiding Leeching License, version 1.1](LICE
 [HangingSignBlockEntityMixin.java](common/src/main/java/com/github/voidleech/oblivion/mixin/HangingSignBlockEntityMixin.java) is alternatively released under the [MIT License](other-licenses/mit-self): it ensures that the `type` parameter in the HangingSignBlockEntity superclass constructors is set to the correct type (ugh vanilla why hardcode it), which is relevant if someone mixes into there and uses the parameter, and is compatible with other mixins like it, so feel free to use.
 
 #### Third-Party Content
-The boat code in this project is based on and contains code from Kaupenjoe's 1.20.X Forge Tutorial, which is licensed under the [MIT license](other-licenses/mit-kaupenjoe).
-The multiloader-compatible registration code in this project is based on and contains code from Lilypuree's Decorative Blocks, which is licensed under the [MIT license](other-licenses/mit-lilypuree).
-The code for enabled-by-default resource packs on the Forge side, and for additional valid blocks on the sign BET on the Fabric side, is based on FabricMC's Fabric, which is licensed under the [Apache 2.0 license](other-licenses/apache-fabric).
+The boat code in this project is based on and contains code from Kaupenjoe's 1.20.X Forge Tutorial, which is licensed under the [MIT license](other-licenses/mit-kaupenjoe).  
+The multiloader-compatible registration code in this project is based on and contains code from Lilypuree's Decorative Blocks, which is licensed under the [MIT license](other-licenses/mit-lilypuree).  
+The code for enabled-by-default resource packs on the Forge side, and for additional valid blocks on the sign BET on the Fabric side, is based on FabricMC's Fabric, which is licensed under the [Apache 2.0 license](other-licenses/apache-fabric).  
