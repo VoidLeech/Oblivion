@@ -182,10 +182,10 @@ publishMods {
             slug = "porting-lib"
         }
         additionalFile(fabricsources) {
-            name = file.map { it.asFile.name }
+            name = "${mod_id}-fabric-${minecraft_version}-${rootProject.version}-sources.jar"
         }
         additionalFile(fabricjavadoc) {
-            name = file.map { it.asFile.name }
+            name = "${mod_id}-fabric-${minecraft_version}-${rootProject.version}-javadoc.jar"
         }
     }
 
@@ -197,10 +197,10 @@ publishMods {
         modLoaders.add("forge")
         modLoaders.add("neoforge")
         additionalFile(forgesources) {
-            name = file.map { it.asFile.name }
+            name = "${mod_id}-forge-${minecraft_version}-${rootProject.version}-sources.jar"
         }
         additionalFile(forgejavadoc) {
-            name = file.map { it.asFile.name }
+            name = "${mod_id}-forge-${minecraft_version}-${rootProject.version}-javadoc.jar"
         }
     }
 
