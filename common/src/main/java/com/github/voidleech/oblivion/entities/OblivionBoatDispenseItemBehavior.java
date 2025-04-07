@@ -6,7 +6,7 @@ import net.minecraft.world.entity.vehicle.Boat;
 public class OblivionBoatDispenseItemBehavior extends BoatDispenseItemBehavior {
     private final OblivionBoatType type;
     public OblivionBoatDispenseItemBehavior(OblivionBoatType type, boolean isChestBoat) {
-        super(Boat.Type.OAK, isChestBoat);
+        super(type.usesRaftModel() ? Boat.Type.BAMBOO : Boat.Type.OAK, isChestBoat);
         this.type = type;
     }
 

@@ -11,7 +11,7 @@ public class OblivionBoatItem extends BoatItem {
     private final OblivionBoatType type;
 
     public OblivionBoatItem(boolean pHasChest, OblivionBoatType pType, Item.Properties pProperties) {
-        super(pHasChest, Boat.Type.OAK, pProperties);
+        super(pHasChest, pType.usesRaftModel() ? Boat.Type.BAMBOO : Boat.Type.OAK, pProperties);
         this.type = pType;
         DispenserBlock.registerBehavior(this, new OblivionBoatDispenseItemBehavior(pType, pHasChest));
     }
