@@ -26,6 +26,11 @@ public class OblivionBoatEntity extends Boat implements OblivionBoat {
     }
 
     @Override
+    public boolean fireImmune() {
+        return super.fireImmune() || getModVariant().fireResistant();
+    }
+
+    @Override
     public Item getDropItem() {
         return getModVariant().getBoat();
     }

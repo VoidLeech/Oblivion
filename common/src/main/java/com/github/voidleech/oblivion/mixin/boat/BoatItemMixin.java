@@ -1,4 +1,4 @@
-package com.github.voidleech.oblivion.mixin;
+package com.github.voidleech.oblivion.mixin.boat;
 
 import com.github.voidleech.oblivion.entities.OblivionBoatEntity;
 import com.github.voidleech.oblivion.entities.OblivionChestBoatEntity;

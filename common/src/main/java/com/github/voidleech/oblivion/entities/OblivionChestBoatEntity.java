@@ -27,6 +27,11 @@ public class OblivionChestBoatEntity extends ChestBoat implements OblivionBoat {
     }
 
     @Override
+    public boolean fireImmune() {
+        return super.fireImmune() || getModVariant().fireResistant();
+    }
+
+    @Override
     public Item getDropItem() {
         return getModVariant().getChestBoat();
     }

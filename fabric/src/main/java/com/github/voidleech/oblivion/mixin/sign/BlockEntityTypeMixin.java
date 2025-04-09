@@ -18,7 +18,7 @@
  * File isn't changed beyond repackaging/mixin-prefixing/mapping-related changes.
  */
 
-package com.github.voidleech.oblivion.mixin;
+package com.github.voidleech.oblivion.mixin.sign;
 
 import com.github.voidleech.oblivion.extensions.SupportsAdditionalBlocks;
 import com.mojang.datafixers.types.Type;

@@ -1,4 +1,4 @@
-package com.github.voidleech.oblivion.mixin;
+package com.github.voidleech.oblivion.mixin.sign;
 
 import com.github.voidleech.oblivion.blocks.entities.OblivionHangingSignBlockEntity;
 import com.github.voidleech.oblivion.init.OblivionBlockEntities;

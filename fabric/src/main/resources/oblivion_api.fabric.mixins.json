@@ -4,16 +4,14 @@
   "package": "com.github.voidleech.oblivion.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "BlockEntityTypeMixin"
-  ],
+  "mixins": ["boat.FabricBoatDispenseItemBehaviorMixin", "boat.FabricBoatMixin", "sign.BlockEntityTypeMixin"],
   "client": [
-    "BoatRendererMixin"
+    "boat.BoatRendererMixin"
   ],
   "server": [
   ],
   "injectors": {
     "defaultRequire": 1
   }
-  }
+}
   

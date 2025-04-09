@@ -31,7 +31,10 @@ public interface OblivionBoatType extends StringRepresentable{
     String getNamespace();
     Item getBoat();
     Item getChestBoat();
-    default boolean usesRaftModel(){
+    default boolean usesRaftModel() {
+        return false;
+    }
+    default boolean fireResistant() {
         return false;
     }
     Block getPlanks();
@@ -63,6 +66,11 @@ public interface OblivionBoatType extends StringRepresentable{
         @Override
         public Block getPlanks() {
             return Blocks.CAKE;
+        }
+
+        @Override
+        public boolean fireResistant() {
+            return true;
         }
     }
 }

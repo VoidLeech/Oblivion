@@ -1,4 +1,4 @@
-package com.github.voidleech.oblivion.mixin;
+package com.github.voidleech.oblivion.mixin.extensions;
 
 import com.github.voidleech.oblivion.extensions.property.IBlockPropertyUndoer;
 import net.minecraft.resources.ResourceLocation;
