@@ -195,7 +195,6 @@ publishMods {
         displayName = file.map { it.asFile.name }
         file = forgeall
         modLoaders.add("forge")
-        modLoaders.add("neoforge")
         additionalFile(forgesources) {
             name = "${mod_id}-forge-${minecraft_version}-${rootProject.version}-sources.jar"
         }
@@ -228,7 +227,6 @@ publishMods {
         from mrOptions
         file = forgeall
         modLoaders.add("forge")
-        modLoaders.add("neoforge")
         additionalFiles.from(
                 forgesources,
                 forgejavadoc)
