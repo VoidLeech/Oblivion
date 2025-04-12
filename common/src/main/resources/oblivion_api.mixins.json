@@ -5,8 +5,8 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "extensions.BlockPropertiesMixin", "boat.BoatDispenseItemBehaviorMixin", "boat.BoatItemMixin", "boat.BoatMixin",
-    "sign.HangingSignBlockEntityMixin", "accessor.ComposterBlockInvoker", "accessor.PotionBrewingInvoker"
+    "accessor.ComposterBlockInvoker", "accessor.PotionBrewingInvoker", "boat.BoatDispenseItemBehaviorMixin",
+    "boat.BoatItemMixin", "boat.BoatMixin", "extensions.BlockPropertiesMixin", "sign.HangingSignBlockEntityMixin"
   ],
   "client": [
   ],

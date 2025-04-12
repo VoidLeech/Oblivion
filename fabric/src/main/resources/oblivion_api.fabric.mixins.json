@@ -6,7 +6,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": ["boat.FabricBoatDispenseItemBehaviorMixin", "boat.FabricBoatMixin", "sign.BlockEntityTypeMixin"],
   "client": [
-    "boat.BoatRendererMixin"
+    "boat.BoatRendererMixin", "boat.ItemBlockRenderTypesAccessor"
   ],
   "server": [
   ],
