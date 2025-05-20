@@ -14,10 +14,9 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.brewing.BrewingRecipe;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
@@ -32,7 +31,6 @@ import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.LoadingModList;
 import net.minecraftforge.registries.DeferredRegister;
 
-import java.lang.module.ModuleDescriptor;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashMap;
@@ -182,6 +180,11 @@ public class ForgePlatformHelper implements IPlatformHelper {
     @Override
     public void addPack(Registration.PackData pack, String modId) {
         PACKS.put(pack, modId);
+    }
+
+    @Override
+    public boolean isPhysicalClient() {
+        return FMLLoader.getDist() == Dist.CLIENT;
     }
 
     private record Mix(Supplier<? extends Potion> input, Supplier<? extends Item> ingredient, Supplier<? extends Potion> output) {

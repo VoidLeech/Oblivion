@@ -31,7 +31,8 @@ public interface IPlatformHelper {
     boolean isModLoaded(String modId);
 
     /**
-     * Checks if a mod with the given id is loaded early.
+     * Checks if a mod with the given id is loaded, when we need to check early
+     * Such as in mixin config plugin. (Not relevant for Fabric)
      *
      * @param modId The mod to check if it is loaded.
      * @return True if the mod is loaded, false otherwise.
@@ -41,7 +42,7 @@ public interface IPlatformHelper {
     Path getResourcePath(String modId, String resource);
 
     /**
-     * Check if the game is currently in a development environment.
+     * Checks if the game is currently in a development environment.
      *
      * @return True if in a development environment, false otherwise.
      */
@@ -114,4 +115,10 @@ public interface IPlatformHelper {
      * @param modId
      */
     void addPack(Registration.PackData pack, String modId);
+
+    /**
+     * Whether
+     * @return
+     */
+    boolean isPhysicalClient();
 }

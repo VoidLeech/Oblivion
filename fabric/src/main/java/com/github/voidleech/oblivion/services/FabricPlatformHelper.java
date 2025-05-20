@@ -5,11 +5,13 @@ import com.github.voidleech.oblivion.services.services.IPlatformHelper;
 import com.github.voidleech.oblivion.util.Registration;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
 import io.github.fabricators_of_create.porting_lib.brewing.BrewingRecipeRegistry;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
+import net.fabricmc.loader.impl.FabricLoaderImpl;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -92,5 +94,10 @@ public class FabricPlatformHelper implements IPlatformHelper {
                 FabricLoader.getInstance().getModContainer(modId).get(), pack.display(),
                 pack.required() ? ResourcePackActivationType.ALWAYS_ENABLED :
                         pack.enabledByDefault() ? ResourcePackActivationType.DEFAULT_ENABLED : ResourcePackActivationType.NORMAL);
+    }
+
+    @Override
+    public boolean isPhysicalClient() {
+        return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
     }
 }

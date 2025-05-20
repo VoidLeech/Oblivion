@@ -25,7 +25,8 @@ public class Platform {
     }
 
     /**
-     * Checks if a mod with the given id is loaded early.
+     * Checks if a mod with the given id is loaded, when we need to check early
+     * Such as in mixin config plugin. (Not relevant for Fabric)
      *
      * @param modId The mod to check if it is loaded.
      * @return True if the mod is loaded, false otherwise.
@@ -55,5 +56,14 @@ public class Platform {
     public static String getEnvironmentName() {
 
         return isDevelopmentEnvironment() ? "development" : "production";
+    }
+
+    /**
+     * Checks if we're on the physical client.
+     *
+     * @return True if on the physical client, false otherwise
+     */
+    public static boolean isPhysicalClient() {
+        return Services.PLATFORM.isPhysicalClient();
     }
 }
