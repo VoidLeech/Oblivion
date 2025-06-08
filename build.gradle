@@ -130,7 +130,7 @@ publishMods {
     File fabricjavadoc = file("fabric/build/libs/${mod_id}-fabric-${minecraft_version}-${rootProject.version}-javadoc.jar")
 
     github {
-        accessToken = providers.environmentVariable("GITHUB_TOKEN")
+        accessToken = providers.environmentVariable("GITHUB_PUBLISH")
         repository = "VoidLeech/Oblivion"
         commitish = "${minecraft_version}/dev"
         tagName = "${minecraft_version}-${rootProject.version}"

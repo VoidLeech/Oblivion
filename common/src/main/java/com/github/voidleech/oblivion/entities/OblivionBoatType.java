@@ -67,10 +67,5 @@ public interface OblivionBoatType extends StringRepresentable{
         public Block getPlanks() {
             return Blocks.CAKE;
         }
-
-        @Override
-        public boolean fireResistant() {
-            return true;
-        }
     }
 }
