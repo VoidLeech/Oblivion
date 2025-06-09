@@ -19,7 +19,7 @@ A Minecraft modding library. After implementation (here, once), cast the details
 
 ### F.A.Q.
 **Q: Can this be used in my modpack?**  
-A: Yes, but do note our license does not allow directly including the mod files in your pack.
+A: Yes of course, so long as when the pack file (zip/mrpack/any other format) is opened (without using a launcher to install it), the mod file (jar) isn't found inside. 
 
 **Q: Newer versions?**  
 A: Planned, eventually.
