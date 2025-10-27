@@ -30,7 +30,9 @@ public class OblivionFabricClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(OblivionModelLayers.FALLBACK_BOAT_LAYER, BoatModel::createBodyModel);
         EntityModelLayerRegistry.registerModelLayer(OblivionModelLayers.FALLBACK_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
 
-        ItemBlockRenderTypesAccessor.oblivion_api$TYPE_BY_FLUID().put(Fluids.LAVA, RenderType.translucent());
-        ItemBlockRenderTypesAccessor.oblivion_api$TYPE_BY_FLUID().put(Fluids.FLOWING_LAVA, RenderType.translucent());
+        if (!OblivionClient.shaderLoaderPresent()) {
+            ItemBlockRenderTypesAccessor.oblivion_api$TYPE_BY_FLUID().put(Fluids.LAVA, RenderType.translucent());
+            ItemBlockRenderTypesAccessor.oblivion_api$TYPE_BY_FLUID().put(Fluids.FLOWING_LAVA, RenderType.translucent());
+        }
     }
 }

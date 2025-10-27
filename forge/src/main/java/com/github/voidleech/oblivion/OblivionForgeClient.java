@@ -29,8 +29,10 @@ public class OblivionForgeClient {
         event.enqueueWork(() -> {
             EntityRenderers.register(OblivionEntities.BOAT.get(), context -> new OblivionBoatRenderer(context, false));
             EntityRenderers.register(OblivionEntities.CHEST_BOAT.get(), context -> new OblivionBoatRenderer(context, true));
-            ItemBlockRenderTypes.setRenderLayer(Fluids.LAVA, RenderType.translucent());
-            ItemBlockRenderTypes.setRenderLayer(Fluids.FLOWING_LAVA, RenderType.translucent());
+            if (!OblivionClient.shaderLoaderPresent()) {
+                ItemBlockRenderTypes.setRenderLayer(Fluids.LAVA, RenderType.translucent());
+                ItemBlockRenderTypes.setRenderLayer(Fluids.FLOWING_LAVA, RenderType.translucent());
+            }
         });
     }
 
